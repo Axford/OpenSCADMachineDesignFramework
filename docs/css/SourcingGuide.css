@@ -1,0 +1,309 @@
+body {
+    font-family: 'Titillium Web', "Helvetica Neue", Helvetica, Arial, Verdana, sans-serif;
+  background: #eee;
+  color: #303030;
+  position: relative;
+  text-indent: 0;
+  font-size: 0.9em;
+  margin: 0px;
+  padding: 0px;
+}
+p,td,div,li {
+  word-wrap: break-word;
+  font-size:1em;
+}
+
+#mdcontent {
+    max-width: 50em;
+    margin: 0px auto;
+    padding: 1px 2em;
+    text-align:left;
+    background-color: white;
+    box-shadow: 0px 0px 40px #888888;
+}
+
+/* Add HackSpace logo */
+#mdcontent:before {
+    content: '';
+    background: url('https://rawgithub.com/snhack/documentation/master/publicity/assets/hackspace_logo.svg');
+    background-size: 60px 60px;
+    width:60px;
+    height: 60px;
+    display:block;
+    position:fixed;
+    right: 10px;
+    top: 10px;
+    z-index:1000;
+}
+
+h1 {
+    margin-top: 2em;
+    font-size: 3em;
+    text-align:center;
+}
+h1 + h1 {
+    margin-top: 0em;
+    color: #999;
+}
+
+h2 {
+    margin-top: 2em;
+    background-color: #d72;
+    color: #fff;
+    padding: 0.1em 2em;
+    margin-left: -2em;
+    margin-right: 0em;
+}
+h3 {
+    margin-bottom: 0.5em;
+    margin-top: 2em;
+}
+
+h4 {
+  color: #111;
+  font-size: 1.2857em;
+  line-height: 1.1667em;
+  margin: 1.1667em 0
+}
+h5 {
+  color: #111;
+  font-size: 1.15em;
+  line-height: 1.3em;
+  margin: 1.3em 0
+}
+h6 {
+  font-size: 1em;
+  line-height: 1.5em;
+  margin: 1.5em 0
+}
+
+p {
+/*  font-size: 0.8em;*/
+   display:block;
+   margin-left:12em;
+   margin-right: 2em;
+}
+
+/* Setup classes for image floats etc. */
+.left { float: left; margin-right: 1.5em; }
+.right { float: right; margin-left: 1.5em; }
+.center { display:block; margin: 0 auto 1.5em; }
+.left, .right { margin-bottom: .8em; margin-top: .5em; }
+
+/* Remove margins from multimarkdown's figures (used with lone images) */
+figure { margin: 0; }
+
+
+h1,h2,h3,h4,h5,h6 {
+/*  line-height: 1.5em*/
+   clear:both;
+}
+
+li {
+
+}
+li p {
+  font-size: 100%;
+  margin: .5em 0
+}
+
+a {
+  -webkit-transition: color .2s ease-in-out;
+  color: #0d6ea1;
+  text-decoration: none
+}
+a:hover {
+  color: #3593d9
+}
+.footnote {
+  color: #0d6ea1;
+  font-size: .8em;
+  vertical-align: super
+}
+img {
+  max-width: 90%;
+  max-height: 100px;
+  display:block;
+  height: auto;
+  margin: 0 auto;
+}
+
+
+blockquote p {
+  font-size: 110%;
+  font-style: italic;
+  line-height: 1.6em
+}
+
+
+/* tables */
+table {
+    /* Indent tables */
+    position:relative;
+    margin-left: 12em;
+    clear:both;
+    margin-top: 0em;
+    width:70%;
+}
+@media screen and (max-width: 40em) {
+    table {
+        margin-top: 0;
+        margin-left: 0em;
+        width:100%;
+    }
+}
+
+th {
+    font-weight: normal;
+    padding: 0.3em 1em;
+    background-color: #888;
+    color: white;
+}
+td {
+    padding: 0.2em 1em;
+    border-bottom: 1px solid #ddd;
+}
+
+/* Thumbnail images in tables - e.g. Parts lists */
+td img {
+    width: auto;
+    max-height:4em;
+    -webkit-transition: all .2s ease-in-out;
+    -moz-transition: all .2s ease-in-out;
+    -o-transition: all .2s ease-in-out;
+    -ms-transition: all .2s ease-in-out;
+}
+td img:hover {
+    -webkit-transform: scale(2);
+    -moz-transform: scale(2);
+    -o-transform: scale(2);
+    transform: scale(2);
+}
+
+
+/*  Note lists */
+ul {
+    margin-left: 12em;
+}
+
+
+/* Assembly lists */
+ol {
+    counter-reset: li;
+    list-style:none;
+    margin-top: 2em;
+}
+
+ol:after {
+    content:'';
+    display:block;
+    clear:both;
+    margin:0;
+    padding:0;
+}
+
+ol li {
+    clear:both;
+    position:relative;
+    display:block;
+    page-break-inside: avoid;
+}
+
+ol li:before {
+    content: counter(li);
+    counter-increment: li;
+    position:relative;
+    display:block;
+    float:left;
+    padding: .4em .4em .4em 0.4em;
+    margin: .5em 0;
+    left: -1em;
+    top: -1.3em;
+    background:  #f93;
+    color:white;
+    height:2em;
+    width:2em;
+    line-height:2em;
+    text-align: center;
+    font-weight: bold;
+    border-radius: 2em;
+}
+
+/* images in sub-sections */
+h3~p {
+    text-align:left;
+}
+
+h3~p img {
+    margin:0;
+}
+
+/* images in assembly steps */
+ol li img {
+    position:relative;
+    float:left;
+    margin-top: -0.5em;
+    clear:both;
+    margin:0;
+    padding:0;
+    margin-bottom: 2em;
+    margin-left: 3em;
+}
+
+@media screen and (max-width: 40em) {
+    ol li img {
+        margin-left: 0;
+        margin-bottom: 1em;
+    }
+}
+
+
+/* STL Viewer */
+#stlViewer {
+    position:absolute;
+    z-index:100;
+    max-width: 50em;
+    margin:0 0;
+    padding: 0 0;
+    background-color: #fff;
+    box-shadow: 0px 5px 35px #555555;
+    display:none;
+}
+
+
+@media print {
+    #mdcontent:before {
+        display:none;
+    }
+
+    h2 {
+        page-break-before: always;
+        color: #d72;
+        background-color: #fff;
+        border-bottom: 1px solid #ccc;
+        padding: 0px 0px;
+        margin-left:0;
+        margin-right:0;
+    }
+
+    th {
+        color: black;
+        border-bottom: 1px solid #888;
+    }
+    stlViewer {
+        display:none;
+    }
+
+    ol li:before {
+        background: none;
+        color: #888;
+        font-size:2em;
+        top: -1.5em;
+        height:2em;
+        width:2em;
+        line-height:2em;
+        text-align: center;
+        font-weight: bold;
+        border:none;
+    }
+}

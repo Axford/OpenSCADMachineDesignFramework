@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <link href='http://fonts.googleapis.com/css?family=Titillium+Web' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="../framework/docs/css/index.css">
+    <script src="../framework/docs/js/jquery.js"></script>
+    <script src="../framework/docs/js/index.js"></script>
+
+</head>
+  <body>
+
+    <div id="mdcontent">
+        <h1>{{project}} Documentation</h1>
+
+        <p>Design variants are listed below, with associated links to their assembly and printing guides. The Vitamin catalogue for the project can be found at the bottom of the page.</p>
+
+        {{#machines}}
+        <section>
+            <h2>{{title}}</h2>
+
+            <img src="../images/{{viewFilename}}">
+
+            <h3>Guides</h3>
+            <ul>
+                {{#guides}}
+                    <li><a href="{{htmfilename}}">{{title}}</a></li>
+                {{/guides}}
+            </ul>
+        </section>
+        {{/machines}}
+
+
+        <h2>Vitamin Catalogue</h2>
+        <p>Catalogue of the vitamins available within the Machine Design framework:</p>
+        <p><b><a href="../framework/docs/VitaminCatalogue.htm">Vitamin Catalogue</a></b></p>
+
+        <p><em>NB: The catalogue may contain more vitamins than are actually used by the project</em></p>
+
+    </div>
+
+  </body>
+</html>

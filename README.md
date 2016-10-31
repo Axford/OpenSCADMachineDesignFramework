@@ -1,2 +1,1 @@
-# OpenSCADMachineDesignFramework
-OpenSCAD Machine Design Framework
+# OpenSCAD for Machine Design framework
