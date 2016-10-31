@@ -7,6 +7,19 @@ import sys
 import os
 import string
 from shutil import copytree, ignore_patterns, copy2
+import subprocess
+
+class cd:
+    """Context manager for changing the current working directory"""
+    def __init__(self, newPath):
+        self.newPath = os.path.expanduser(newPath)
+
+    def __enter__(self):
+        self.savedPath = os.getcwd()
+        os.chdir(self.newPath)
+
+    def __exit__(self, etype, value, traceback):
+        os.chdir(self.savedPath)
 
 
 def startaproject(proj_parent_path, proj_name):
@@ -65,12 +78,21 @@ def startaproject(proj_parent_path, proj_name):
     else:
         print(templateFile + " root template is missing")
 
+    print("Init git")
+    with cd(os.path.join(proj_path)):
+        subprocess.call(['git', 'init'])
+        subprocess.call(['git', 'add', '.'])
+        subprocess.call(['git', 'commit', '-m', 'Initial commit'])
+
 
     print("Setup framework submodule")
-    # git submodule add git@github.com:url_to/awesome_submodule.git path_to_awesome_submodule
-    # git submodule update --init --recursive
-    
+    with cd(os.path.join(proj_path, 'hardware')):
+        subprocess.call(['git', 'submodule', 'add', 'https://github.com/Axford/OpenSCADMachineDesignFramework.git', 'framework'])
+        subprocess.call(['git', 'submodule', 'update', '--init', '--recursive'])
 
+
+    print("")
+    print("Project setup complete")
 
 if __name__ == '__main__':
     if len(sys.argv) == 3:
