@@ -226,7 +226,7 @@ def gen_assembly_guide(m, guide_template):
     for c in m['children']:
         if type(c) is DictType and c['type'] == 'view' and 'filepath' in c:
             view = c
-            md += '!['+view['caption']+']('+ view['filepath'] +')\n\n'
+            md += '!['+view['caption']+']('+ view['filepath'][3:] +')\n\n'
 
     # intro
     md += gen_intro(m)
