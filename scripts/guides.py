@@ -50,7 +50,7 @@ def gen_bom(m):
         for v in m['vitamins']:
             md += str(v['qty']) + ' | '
             md += '['+v['title']+']() | '
-            md += '![](../framework/vitamins/images/'+views.view_filename(v['title']+'_view') + ') | '
+            md += '![](../vitamins/images/'+views.view_filename(v['title']+'_view') + ') | '
             md += '\n'
         md += '\n'
 
@@ -122,7 +122,7 @@ def gen_cut(m, a):
         for v in a['vitamins']:
             md += str(v['qty']) + ' | '
             md += '['+v['title']+']() | '
-            md += '![](../framework/vitamins/images/'+views.view_filename(v['title']+'_view') + ') | '
+            md += '![](../vitamins/images/'+views.view_filename(v['title']+'_view') + ') | '
             md += '\n'
         md += '\n'
 
@@ -158,7 +158,7 @@ def gen_assembly(m, a):
         for v in a['vitamins']:
             md += str(v['qty']) + ' | '
             md += '['+v['title']+']() | '
-            md += '![](../framework/vitamins/images/'+views.view_filename(v['title']+'_view') + ') | '
+            md += '![](../vitamins/images/'+views.view_filename(v['title']+'_view') + ') | '
             md += '\n'
         md += '\n'
 
@@ -417,7 +417,7 @@ def gen_sourcing_guide(m, guide_template):
             missing.append('"'+vn+'",0,"","No sources found"')
 
         md += '\n'
-        md += '![](../framework/vitamins/images/'+views.view_filename(v['title']+'_view') + ') \n'
+        md += '![](../vitamins/images/'+views.view_filename(v['title']+'_view') + ') \n'
         md += '\n'
 
         if 'markdown' in v and len(v['markdown']) > 0:

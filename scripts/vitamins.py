@@ -24,8 +24,8 @@ def compile_vitamin(v):
     if not os.path.isdir(config.paths['vitaminsstl']):
         os.makedirs(config.paths['vitaminsstl'])
 
-    if not os.path.isdir(config.paths['vitaminsimages']):
-        os.makedirs(config.paths['vitaminsimages'])
+    if not os.path.isdir(config.paths['vitaminsimages2']):
+        os.makedirs(config.paths['vitaminsimages2'])
 
     # Compile
     print("  "+v['title'])
@@ -57,7 +57,7 @@ def compile_vitamin(v):
         for view in v['views']:
             print("      "+view['title'])
 
-            render_view(v['title'], v['call'], config.paths['vitaminsimages'], view, hashchanged, h)
+            render_view(v['title'], v['call'], config.paths['vitaminsimages2'], view, hashchanged, h)
 
 
     else:
