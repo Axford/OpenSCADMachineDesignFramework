@@ -6,7 +6,7 @@ Re-usable framework for complex machine design in OpenSCAD (e.g. CNC machines, r
 
 Example of an animated assembly created using the framework:
 
-![GyroAnt Animated Assembly](https://rawgit.com/swindonmakers/GyroAnt/master/hardware/assemblies/GyroAnt/GyroAnt.gif)
+![GyroAnt Animated Assembly](https://github.com/swindonmakers/GyroAnt/raw/master/hardware/assemblies/GyroAnt/GyroAnt.gif)
 
 
 ## Framework Principles
