@@ -34,4 +34,4 @@ The latest [Vitamin Catalogue](docs/VitaminCatalogue.md) is located under `/docs
 
 ## Tutorials
 
-See the (Tutorials)[docs/Tutorials.md] for a guided walk-through of the framework and basic design practises.
+See the [Tutorials](docs/Tutorials.md) for a guided walk-through of the framework and basic design practises.
