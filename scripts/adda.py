@@ -42,6 +42,7 @@ def adda(t, n, d):
         print("Creating cutpart")
 
         templateFile = os.path.join(config.paths['template'],"cutparts","cutpart.scad")
+        outFile = os.path.join(config.paths['cutparts'], n + ".scad")
         incFile = outFile[3:]
         configFile = os.path.join(config.paths['config'],"cutparts.scad")
         module = n
