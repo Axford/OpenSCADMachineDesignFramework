@@ -135,6 +135,7 @@ def render_view_using_file(obj_title, scadfile, dir, view, hashchanged, hash="")
         openscad.run(
                     "--imgsize=%d,%d" % (w, h),
                     "--projection=p",
+                    "--render",
                     "--camera=" + camera,
                     "-o", png_name,
                     scadfile)
