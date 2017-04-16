@@ -26,6 +26,8 @@ module ${name}(complete=false) {
         3,   // how many steps
         complete  // show as complete?  i.e. last step!
         ) {
+        
+        view();
 
         // Most cut parts use a difference...
         difference() {
