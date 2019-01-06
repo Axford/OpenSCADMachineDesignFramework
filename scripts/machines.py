@@ -33,8 +33,8 @@ def machines():
 
     # for each machine
     for m in jso:
-        if type(m) is DictType and m['type'] == 'machine':
-            print(m['title'])
+        if type(m) is dict and m['type'] == 'machine':
+            print((m['title']))
 
             fn = config.paths['root'] + m['file']
 
@@ -52,15 +52,15 @@ def machines():
                 # Views
                 print("  Views")
                 for c in m['children']:
-                    if type(c) is DictType and c['type'] == 'view':
+                    if type(c) is dict and c['type'] == 'view':
                         view = c
-                        print("    "+view['title'])
+                        print(("    "+view['title']))
 
                         render_view_using_file(m['title'], fn, config.paths['machineimages'], view, hashchanged, h)
 
 
             else:
-                print("    Error: scad file not found: "+v['file'])
+                print(("    Error: scad file not found: "+v['file']))
 
 
     # Save changes to json

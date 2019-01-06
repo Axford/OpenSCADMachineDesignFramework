@@ -36,7 +36,7 @@ def output_vitamin(v):
 
         # per view
         for view in t['children']:
-            if type(view) is DictType and view['type'] == 'view':
+            if type(view) is dict and view['type'] == 'view':
                 md += '!['+t['title']+']('+view['png_name']+')\n'
 
     md += '\n'
@@ -68,7 +68,7 @@ def compile_vitamin(v, dom):
         os.makedirs(config.paths['vitaminsimages'])
 
     # Compile
-    print("  "+v['title'])
+    print(("  "+v['title']))
     fn = '../' + v['file']
     if (os.path.isfile(fn)):
 
@@ -84,8 +84,8 @@ def compile_vitamin(v, dom):
         # Views
         print("    Views")
         for view in v['children']:
-            if type(view) is DictType and view['type'] == 'view':
-                print("      "+view['title'])
+            if type(view) is dict and view['type'] == 'view':
+                print(("      "+view['title']))
 
                 render_view(v['title'], v['call'], config.paths['vitaminsimages'], view, hashchanged, h, [fn], False, useVitaminSTL=False)
 
@@ -96,14 +96,14 @@ def compile_vitamin(v, dom):
 
 
     else:
-        print("    Error: scad file not found: "+v['file'])
+        print(("    Error: scad file not found: "+v['file']))
 
 
 def parse_vitamin(vitaminscad, use_catalogue_call=False):
 
     vitamincall = vitaminscad[:-5];
 
-    print("  Calling: "+ vitamincall + "();")
+    print(("  Calling: "+ vitamincall + "();"))
 
     # Generate a wrapper scad file for the vitamin file
     with open(config.paths['tempscad'], "w") as f:
@@ -157,7 +157,7 @@ def parse_vitamin(vitaminscad, use_catalogue_call=False):
                 js = json.dumps(jso, sort_keys=False, indent=4, separators=(',', ': '))
 
             except Exception as e:
-                print("  "+e)
+                print(("  "+e))
                 # Stop malformed machine json screwing up everything else!
                 js = ''
 
@@ -185,7 +185,7 @@ def catalogue():
 
     for filename in os.listdir(config.paths['vitamins']):
         if filename[-5:] == '.scad':
-            print("  Parsing: "+filename)
+            print(("  Parsing: "+filename))
 
             s = ''
 
@@ -225,12 +225,12 @@ def catalogue():
     try:
         jso = json.loads(js)
 
-        print("Parsed "+str(files)+" vitamin files")
+        print(("Parsed "+str(files)+" vitamin files"))
 
         dom = {'vitamins':[]}
 
         for v in jso:
-            if type(v) is DictType and v['type'] == 'vitamin':
+            if type(v) is dict and v['type'] == 'vitamin':
                 try:
                     compile_vitamin(v, dom)
                 except Exception as e:

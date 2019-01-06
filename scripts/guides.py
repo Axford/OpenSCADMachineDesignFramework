@@ -215,7 +215,7 @@ def assembly_level(a):
 
 
 def gen_assembly_guide(m, guide_template):
-    print(m['title'])
+    print((m['title']))
 
     md = ''
 
@@ -224,7 +224,7 @@ def gen_assembly_guide(m, guide_template):
 
     # machine views
     for c in m['children']:
-        if type(c) is DictType and c['type'] == 'view' and 'filepath' in c:
+        if type(c) is dict and c['type'] == 'view' and 'filepath' in c:
             view = c
             md += '!['+view['caption']+']('+ view['filepath'][3:] +')\n\n'
 
@@ -273,7 +273,7 @@ def gen_assembly_guide(m, guide_template):
 
 
 def gen_printing_guide(m, guide_template):
-    print(m['title'])
+    print((m['title']))
 
     if len(m['printed']) == 0:
         return {};
@@ -347,19 +347,19 @@ def gen_printing_guide(m, guide_template):
 
 
 def load_sources():
-    print "Loading sourcing info..."
+    print("Loading sourcing info...")
 
     load_source(config.paths['sourcingcsv'])
 
     for filename in os.listdir(config.paths['vitamins']):
         if filename[-4:] == '.csv':
-            print("  Parsing: "+filename)
+            print(("  Parsing: "+filename))
             csvfn = os.path.join(src_dir, filename)
             load_source(csvfn)
 
 def load_source(csvfn):
     if os.path.isfile(csvfn):
-        with open(csvfn, 'rb') as csvfile:
+        with open(csvfn, 'r') as csvfile:
             rdr = csv.DictReader(csvfile)
             for row in rdr:
                 vn = row['Vitamin']
@@ -369,7 +369,7 @@ def load_source(csvfn):
 
 
 def gen_sourcing_guide(m, guide_template):
-    print(m['title'])
+    print((m['title']))
 
     if len(m['vitamins']) == 0:
         return {};
@@ -469,7 +469,7 @@ def gen_index(jso, index_file, index_template):
     # build object
     indexObj = { 'machines': [], 'project':'' };
     for m in jso:
-        if type(m) is DictType and m['type'] == 'machine':
+        if type(m) is dict and m['type'] == 'machine':
 
             # tack in a view filename
             m['viewFilename'] = views.view_filename(m['title'] + '_view')
@@ -527,7 +527,7 @@ def guides():
 
     # for each machine
     for m in jso:
-        if type(m) is DictType and m['type'] == 'machine':
+        if type(m) is dict and m['type'] == 'machine':
 
             if 'guides' not in m:
                 m['guides'] = []

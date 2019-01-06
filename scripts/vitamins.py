@@ -28,7 +28,7 @@ def compile_vitamin(v):
         os.makedirs(config.paths['vitaminsimages2'])
 
     # Compile
-    print("  "+v['title'])
+    print(("  "+v['title']))
     fn = os.path.join('..', v['file'])
     if (os.path.isfile(fn)):
 
@@ -55,13 +55,13 @@ def compile_vitamin(v):
         # Views
         print("    Views")
         for view in v['views']:
-            print("      "+view['title'])
+            print(("      "+view['title']))
 
             render_view(v['title'], v['call'], config.paths['vitaminsimages2'], view, hashchanged, h)
 
 
     else:
-        print("    Error: scad file not found: "+v['file'])
+        print(("    Error: scad file not found: "+v['file']))
 
 def vitamins():
     print("Vitamins")
@@ -74,8 +74,8 @@ def vitamins():
 
     # for each machine
     for m in jso:
-        if type(m) is DictType and m['type'] == 'machine':
-            print(m['title'])
+        if type(m) is dict and m['type'] == 'machine':
+            print((m['title']))
 
             vl = m['vitamins']
 

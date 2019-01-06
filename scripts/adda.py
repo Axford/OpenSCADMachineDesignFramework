@@ -77,7 +77,7 @@ def adda(t, n, d):
             o.write("include <"+incFile+">\n")
 
     else:
-        print(templateFile + " template is missing")
+        print((templateFile + " template is missing"))
 
     # Sandbox
     templateFile = os.path.join(config.paths['template'],"sandbox","sandbox.scad")
@@ -93,7 +93,7 @@ def adda(t, n, d):
             o.write(s)
 
     else:
-        print(templateFile + " template is missing")
+        print((templateFile + " template is missing"))
 
 
 if __name__ == '__main__':
