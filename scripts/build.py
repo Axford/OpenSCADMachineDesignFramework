@@ -22,15 +22,15 @@ def build(argv):
     try:
         opts, args = getopt.getopt(argv,"hcq",[])
     except getopt.GetoptError:
-        print 'build.py -h -c -q'
-        print ''
+        print('build.py -h -c -q')
+        print( '')
         sys.exit(2)
     for opt, arg in opts:
         if opt == '-h':
-            print 'Usage: -h -c -q'
-            print ''
-            print '  -c   Skip catalogue'
-            print '  -q   Quick build - skip assemblies, guide and catalogue'
+            print('Usage: -h -c -q')
+            print('')
+            print('  -c   Skip catalogue')
+            print( '  -q   Quick build - skip assemblies, guide and catalogue')
             sys.exit()
         if opt in ("-c"):
             doCatalogue = False
@@ -82,7 +82,7 @@ def build(argv):
     print("Build Complete")
 
     if errorlevel > 0:
-        print("Error: " + str(errorlevel))
+        print(("Error: " + str(errorlevel)))
 
     return errorlevel
 

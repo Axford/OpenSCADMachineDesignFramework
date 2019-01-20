@@ -1,3 +1,11 @@
+# Changes on this fork
+
+This framework is an awesome project from Axford, but it appears to have been abandoned, at least it's not been worked on since 2016 or so (it's now Jan 2019).  Original was written for Python 2, and assumed Unix (or Mac?) conventions.  I've updated it to work with Python 3 (only tested with 3.6.5) and made some changes to make it work on Windows.
+
+**Note**:  I have not tested this extensively.  I've only used it with Python 3.6.5 on Win10, and don't know if I broke anything for other platforms.  I'm also quite new to using it, so there may be use cases that don't currently work (sadly, the tutorial only has part 1)  If you find any bugs, please open an issue, I'll try to take a look.  
+
+Everythng below is from the original project.
+
 # OpenSCAD for Machine Design framework
 
 ## Overview

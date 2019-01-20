@@ -38,7 +38,7 @@ def parse_machines():
 
     for filename in os.listdir(config.paths['root']):
         if filename[-5:] == '.scad':
-            print("  Parsing: "+filename)
+            print(("  Parsing: "+filename))
             scadfile = os.path.join(config.paths['root'], filename)
 
             if (files > 0):
@@ -69,7 +69,7 @@ def parse_machines():
         try:
             jso = json.loads(js)
 
-            print("  Parsed "+str(files)+" machine files")
+            print(("  Parsed "+str(files)+" machine files"))
 
             summarise_files(jso, oldjso)
 
@@ -138,7 +138,7 @@ def parse_machine(scadfile):
 
         except Exception as e:
             print(e)
-            print("See "+config.paths['errors']+" for malformed json")
+            print(("See "+config.paths['errors']+" for malformed json"))
             with open(config.paths['errors'], 'w') as f:
                 f.write(js)
             # Stop malformed machine json screwing up everything else!
@@ -164,7 +164,7 @@ def add_file(fn, fs):
         fs.append({ 'type':'file', 'file':fn })
 
 def add_file_for(jso, fs):
-    if type(jso) is DictType:
+    if type(jso) is dict:
         if 'file' in jso:
             add_file(jso['file'], fs)
 
@@ -184,7 +184,7 @@ def summarise_files(jso, oldjso):
     for m in jso:
         add_file_for(m, fs)
 
-    print("  Found "+str(len(fs))+" files")
+    print(("  Found "+str(len(fs))+" files"))
 
 
 # Part Summarisation
@@ -203,7 +203,7 @@ def add_view(jso, o):
 def add_views_for(jso, o):
     # check for views in children
     for c in jso['children']:
-        if type(c) is DictType and c['type'] == 'view':
+        if type(c) is dict and c['type'] == 'view':
             add_view(c, o)
 
 def add_animation(jso, o):
@@ -219,7 +219,7 @@ def add_animation(jso, o):
 def add_animations_for(jso, o):
     # check for animations in children
     for c in jso['children']:
-        if type(c) is DictType and c['type'] == 'animation':
+        if type(c) is dict and c['type'] == 'animation':
             add_animation(c, o)
 
 def add_markdown(jso, o):
@@ -237,7 +237,7 @@ def add_markdown(jso, o):
 def add_markdown_for(jso, o):
     # check for markdown in children
     for c in jso['children']:
-        if type(c) is DictType and c['type'] == 'markdown':
+        if type(c) is dict and c['type'] == 'markdown':
             add_markdown(c, o)
 
 def add_part(jso, o):
@@ -253,7 +253,7 @@ def add_part(jso, o):
 def add_parts_for(jso, o):
     # check for parts in children
     for c in jso['children']:
-        if type(c) is DictType and c['type'] == 'part':
+        if type(c) is dict and c['type'] == 'part':
             add_part(c, o)
 
 
@@ -274,7 +274,7 @@ def add_step(jso, o):
 def add_steps_for(jso, o):
     # check for steps in children
     for c in jso['children']:
-        if type(c) is DictType and c['type'] == 'step':
+        if type(c) is dict and c['type'] == 'step':
             add_step(c, o)
 
 
@@ -348,7 +348,7 @@ def add_cut(jso, cl, addSteps=True, addViews=True, addChildren=True):
     # Collate immediate children, and sub-assemblies nested in steps!
     if addChildren and 'children' in jso:
         for c in jso['children']:
-            if type(c) is DictType:
+            if type(c) is dict:
                 tn = c['type']
 
                 if tn == 'vitamin':
@@ -356,7 +356,7 @@ def add_cut(jso, cl, addSteps=True, addViews=True, addChildren=True):
 
                 if tn == 'step':
                     for sc in c['children']:
-                        if type(sc) is DictType:
+                        if type(sc) is dict:
                             tn2 = sc['type']
 
                             if tn2 == 'vitamin':
@@ -400,7 +400,7 @@ def add_assembly(jso, al, pl, vl, cl, addSteps=True, addViews=True, addChildren=
     nextlevel = level + 1
     if addChildren and 'children' in jso:
         for c in jso['children']:
-            if type(c) is DictType:
+            if type(c) is dict:
                 tn = c['type']
 
                 if tn == 'vitamin':
@@ -417,7 +417,7 @@ def add_assembly(jso, al, pl, vl, cl, addSteps=True, addViews=True, addChildren=
 
                 if tn == 'step':
                     for sc in c['children']:
-                        if type(sc) is DictType:
+                        if type(sc) is dict:
                             tn2 = sc['type']
 
                             if tn2 == 'vitamin':
@@ -437,7 +437,7 @@ def add_assembly(jso, al, pl, vl, cl, addSteps=True, addViews=True, addChildren=
 
 def summarise_parts_for(jso, al, pl, vl, cl, level=0):
     # print("sum_parts_for "+str(level))
-    if type(jso) is DictType:
+    if type(jso) is dict:
         tn = jso['type']
 
         if tn == 'vitamin':
@@ -460,8 +460,8 @@ def summarise_parts(jso, oldjso):
     print("Summarising parts for each machine...")
 
     for m in jso:
-        if type(m) is DictType and m['type'] == 'machine':
-            print("  "+m['title']+"...")
+        if type(m) is dict and m['type'] == 'machine':
+            print(("  "+m['title']+"..."))
 
             al = m['assemblies'] = []
             cl = m['cut'] = []
@@ -472,10 +472,10 @@ def summarise_parts(jso, oldjso):
                 summarise_parts_for(c, al, pl, vl, cl, 0)
 
             print("  Found:")
-            print("    "+str(len(al))+" assemblies")
-            print("    "+str(len(cl))+" cut parts")
-            print("    "+str(len(pl))+" printed parts")
-            print("    "+str(len(vl))+" vitamins")
+            print(("    "+str(len(al))+" assemblies"))
+            print(("    "+str(len(cl))+" cut parts"))
+            print(("    "+str(len(pl))+" printed parts"))
+            print(("    "+str(len(vl))+" vitamins"))
 
 
 # Update Cache
@@ -487,13 +487,13 @@ def update_cache_info_for(vl, ovl):
         return
 
     for v in vl:
-        if type(v) is DictType and 'title' in v:
-            print("      "+v['title'])
+        if type(v) is dict and 'title' in v:
+            print(("      "+v['title']))
 
             # find match in ovl
             oldv = None
             for ov in ovl:
-                if type(ov) is DictType and 'title' in ov and ov['title'] == v['title']:
+                if type(ov) is dict and 'title' in ov and ov['title'] == v['title']:
                     oldv = ov
                     continue
 
@@ -517,13 +517,13 @@ def update_cache_info(jso, oldjso):
         return
 
     for m in jso:
-        if type(m) is DictType and m['type'] == 'machine':
-            print("  "+m['title']+"...")
+        if type(m) is dict and m['type'] == 'machine':
+            print(("  "+m['title']+"..."))
 
             # find matching machine in oldjso
             oldm = None
             for om in oldjso:
-                if type(om) is DictType and om['type'] == 'machine' and 'title' in om and om['title'] == m['title']:
+                if type(om) is dict and om['type'] == 'machine' and 'title' in om and om['title'] == m['title']:
                     oldm = om
                     continue
 
@@ -554,4 +554,4 @@ def update_cache_info(jso, oldjso):
 
 
 if __name__ == '__main__':
-    print("Parse complete, errorlevel="+str(parse_machines()))
+    print(("Parse complete, errorlevel="+str(parse_machines())))

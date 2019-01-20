@@ -40,13 +40,13 @@ def printed():
 
     # for each machine
     for m in jso:
-        if type(m) is DictType and m['type'] == 'machine':
-            print(m['title'])
+        if type(m) is dict and m['type'] == 'machine':
+            print((m['title']))
 
             pl = m['printed']
 
             for p in pl:
-                print("  "+p['title'])
+                print(("  "+p['title']))
                 fn = config.paths['root'] + p['file']
                 if (os.path.isfile(fn)):
 
@@ -94,7 +94,7 @@ def printed():
                     print("    views")
                     # Views
                     for view in p['views']:
-                        print("      "+view['title'])
+                        print(("      "+view['title']))
 
                         render_view(p['title'], p['call'], config.paths['printedpartsimages'], view, hashchanged, h)
 
@@ -103,7 +103,7 @@ def printed():
                     stlList.append(md5path)
 
                 else:
-                    print("    Error: scad file not found: "+p['file'])
+                    print(("    Error: scad file not found: "+p['file']))
 
 
     # Save changes to json
@@ -111,16 +111,16 @@ def printed():
         f.write(json.dumps(jso, sort_keys=False, indent=4, separators=(',', ': ')))
 
     # clean-up orphaned stls and checksums
-    print "Checking for outdated STLs..."
+    print("Checking for outdated STLs...")
     for f in os.listdir(config.paths['printedpartsstl']):
         fp = os.path.join(config.paths['printedpartsstl'], f)
         try:
             if os.path.isfile(fp) and (fp not in stlList):
-                print "Removing: "+fp
+                print(( "Removing: "+fp))
                 os.remove(fp)
-        except Exception, e:
-            print e
-    print "  Done"
+        except Exception as e:
+            print(e)
+    print("  Done")
 
     return 0
 

@@ -55,7 +55,7 @@ def check_syntax(filename, level=0):
         if errorlevel > 0:
             res['errorLevel'] = errorlevel
             res['errorMessage'] = "Syntax error near line "+str(errorlevel)
-            print("Syntax error near line "+str(errorlevel)+" in "+filename)
+            print(("Syntax error near line "+str(errorlevel)+" in "+filename))
 
         # if error, do the same for all included files
         if errorlevel > 0:
@@ -66,12 +66,12 @@ def check_syntax(filename, level=0):
     else:
         res['errorLevel'] = 1
         res['errorMessage'] = 'File not found'
-        print("File not found: "+filename)
+        print(("File not found: "+filename))
 
     # Print warnings
     if level == 0:
         for w in res['warnings']:
-            print("Warning: "+w)
+            print(("Warning: "+w))
 
     return res
 

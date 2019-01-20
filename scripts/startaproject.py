@@ -29,14 +29,14 @@ def startaproject(proj_parent_path, proj_name):
     proj_path = os.path.join(proj_parent_path, proj_name)
 
     if (os.path.isdir(proj_parent_path) is not True):
-        print("Error: Parent directory does not exist: "+proj_parent_path)
+        print(("Error: Parent directory does not exist: "+proj_parent_path))
         sys.exit()
 
     if (os.path.isdir(proj_path)):
-        print("Error: Project directory already exists: "+proj_path)
+        print(("Error: Project directory already exists: "+proj_path))
         sys.exit()
     else:
-        print("Creating project directory: "+proj_path)
+        print(("Creating project directory: "+proj_path))
         os.mkdir(proj_path)
 
     print("Create directory structure")
@@ -76,7 +76,7 @@ def startaproject(proj_parent_path, proj_name):
         with open(outFile,'w') as o:
             o.write(s)
     else:
-        print(templateFile + " root template is missing")
+        print((templateFile + " root template is missing"))
 
     print("Init git")
     with cd(os.path.join(proj_path)):

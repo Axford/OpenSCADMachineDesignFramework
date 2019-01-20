@@ -57,8 +57,8 @@ def animateAssembly(mname, aname, prefix, framesPerStep):
 
     # locate required machine
     for m in jso:
-        if type(m) is DictType and m['type'] == 'machine' and m['title'] == mname:
-            print("Found machine: "+m['title'])
+        if type(m) is dict and m['type'] == 'machine' and m['title'] == mname:
+            print(("Found machine: "+m['title']))
 
             al = m['assemblies']
 
@@ -70,7 +70,7 @@ def animateAssembly(mname, aname, prefix, framesPerStep):
             # locate required assembly
             for a in al:
                 if a['title'] == aname:
-                    print("Found assembly: "+a['title'])
+                    print(("Found assembly: "+a['title']))
                     fn = config.paths['root'] + a['file']
                     if (os.path.isfile(fn)):
 
@@ -94,7 +94,7 @@ def animateAssembly(mname, aname, prefix, framesPerStep):
                         }
                         firstView = True
                         for step in a['steps']:
-                            print("Step: "+str(step['num']))
+                            print(("Step: "+str(step['num'])))
 
                             # generate a transition move?
                             if len(step['views']) > 0:
@@ -177,7 +177,7 @@ def animateAssembly(mname, aname, prefix, framesPerStep):
                                 views.PolishTransparentBackground = False
                                 views.PolishCrop = False
                                 fn = view_dir + "/" +prefix + format(frameNum, '03') + "_" +view['title']+".png"
-                                print("Rendering: "+fn)
+                                print(("Rendering: "+fn))
                                 views.render_view_using_file(prefix + format(frameNum, '03'), config.paths['tempscad'], view_dir, view, hashchanged, h)
                                 frameNum = frameNum + 1
 
@@ -199,7 +199,7 @@ def animateAssembly(mname, aname, prefix, framesPerStep):
                                             alpha = extra / (1.0*framesPerStep)
                                             if (alpha > 1.0):
                                                 alpha = 1.0
-                                            print("Blending: "+str(alpha) +", "+str(frameNum))
+                                            print(("Blending: "+str(alpha) +", "+str(frameNum)))
                                             imgNew = Image.blend(imgPrev,img,alpha)
 
                                         draw = ImageDraw.Draw(imgNew, "RGBA")
@@ -219,7 +219,7 @@ def animateAssembly(mname, aname, prefix, framesPerStep):
 
                                         fn = view_dir + "/" +prefix + format(frameNum, '03') + "_" +view['title']+".png"
                                         frameNum = frameNum + 1
-                                        print("Saving: "+fn)
+                                        print(("Saving: "+fn))
                                         imgNew.save(fn)
 
                                 lfn = fn
@@ -262,12 +262,12 @@ def animateAssembly(mname, aname, prefix, framesPerStep):
 
                         # build video
                         cmd = "ffmpeg -r "+str(framesPerStep)+" -y -i "+view_dir + "/" + prefix+"%03d_"+view['title']+".png -vcodec libx264 -pix_fmt yuv420p "+view_dir + "/" + prefix+".mp4"
-                        print("Encoding video with: "+cmd)
+                        print(("Encoding video with: "+cmd))
                         os.system(cmd)
 
                         # build animated gif
                         cmd = "convert "+view_dir + "/" + prefix+".mp4 "+view_dir + "/" + prefix+".gif"
-                        print("Creating GIF with: "+cmd)
+                        print(("Creating GIF with: "+cmd))
                         os.system(cmd)
 
                         # clean up temporary images
@@ -283,7 +283,7 @@ def animateAssembly(mname, aname, prefix, framesPerStep):
                             print("Exception running osascript")
 
                     else:
-                        print("    Error: scad file not found: "+a['file'])
+                        print(("    Error: scad file not found: "+a['file']))
 
     return 0
 

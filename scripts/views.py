@@ -58,12 +58,17 @@ def polish(filename, w, h, hash="", viewhash=""):
         y1 = img.size[1]
         y2 = 0
 
+        #Added by JG to fix type error:
+        w=int(w)
+
+        h=int(h)
+
         # Set background to white and transparent
 
-        for y in xrange(img.size[1]):
+        for y in range(img.size[1]):
             solidx = 0
             solidy = 0
-            for x in xrange(img.size[0]):
+            for x in range(img.size[0]):
                 if pixdata[x, y] == bkc:
                     pixdata[x, y] = (255, 255, 255, 0 if PolishTransparentBackground else 255)
                 else:
@@ -81,12 +86,14 @@ def polish(filename, w, h, hash="", viewhash=""):
         x2 += 2
         y2 += 2
 
+
         # downsample (half the res)
         img = img.resize((w, h), Image.ANTIALIAS)
 
         # crop
         if (x1 < x2 and y1 < y2 and PolishCrop):
             img = img.crop((x1/2,y1/2,x2/2,y2/2))
+
 
         # add hash to meta data
         meta = PngImagePlugin.PngInfo()
@@ -99,9 +106,13 @@ def polish(filename, w, h, hash="", viewhash=""):
 
         # Save it
         img.save(filename, "PNG", pnginfo=meta)
+
         img.close()
-    except:
-        print("  Exception error", sys.exc_info()[0])
+    except Exception as e:
+        print(("  Exception error", sys.exc_info()[0]))
+        #print(type(e))
+        #print(e.args)
+        #print(e)
 
 
 def render_view_using_file(obj_title, scadfile, dir, view, hashchanged, hash=""):
@@ -111,11 +122,11 @@ def render_view_using_file(obj_title, scadfile, dir, view, hashchanged, hash="")
 
     oldhashes = read_hashes_from_png(png_name)
 
-    viewstr = str(view['size']) + str(view['translate']) + str(view['rotate']) + str(view['dist'])
+    viewstr = (str(view['size']) + str(view['translate']) + str(view['rotate']) + str(view['dist'])).encode('utf-8')
     viewhash = hashlib.md5(viewstr).hexdigest();
 
     if (not os.path.isfile(png_name) or (hash != oldhashes['csghash']) or (viewhash != oldhashes['viewhash'])):
-        print("        Updating: "+png_name)
+        print(("        Updating: "+png_name))
 
         # Up-sample images
         w = view['size'][0] * 2
@@ -141,7 +152,7 @@ def render_view_using_file(obj_title, scadfile, dir, view, hashchanged, hash="")
 
         polish(png_name, w/2, h/2, hash, viewhash)
 
-        print
+        print()
 
     else:
         print("        View up to date")
