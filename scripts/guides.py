@@ -362,10 +362,10 @@ def load_source(csvfn):
         with open(csvfn, 'r') as csvfile:
             rdr = csv.DictReader(csvfile)
             for row in rdr:
-                vn = row['Vitamin']
+                vn = row.get('Vitamin');
                 if vn not in sourcing:
                     sourcing[vn] = []
-                sourcing[vn].append({"Cost":row['Cost'], "Source":row['Source'], 'Notes':row['Notes']});
+                sourcing[vn].append({"Cost":row.get('Cost'), "Source":row.get('Source'), 'Notes':row.get('Notes')});
 
 
 def gen_sourcing_guide(m, guide_template):
