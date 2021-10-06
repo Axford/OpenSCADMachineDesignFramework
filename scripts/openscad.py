@@ -1,4 +1,4 @@
-from __future__ import print_function
+
 
 import config
 import subprocess
@@ -77,7 +77,7 @@ def which(program):
 
 def run_silent(*args):
     log = open(config.paths['openscadlog'], "w")
-    programs = ['OpenSCAD', 'openscad']
+    programs = ['OpenSCAD', 'openscad', 'openscad.com']
     for locate_prog in programs:
         prog = which(locate_prog)
         if prog != None:

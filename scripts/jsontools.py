@@ -11,7 +11,7 @@ def json_merge_missing_keys(j1, j2, overwrite=False, exclude=[]):
 def get_child_by_key_values(j1, kvs={}):
     if 'children' in j1:
         for c in j1['children']:
-            if type(c) is DictType:
+            if type(c) is dict:
                 match = True
                 for kv in kvs:
                     if not (kv in c and c[kv] == kvs[kv]):

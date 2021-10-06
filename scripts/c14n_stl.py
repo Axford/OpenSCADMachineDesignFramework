@@ -6,7 +6,7 @@
 # This has no effect on the model but makes the STL consistent. I.e. it makes a canonical form.
 #
 
-from __future__ import print_function
+
 
 import sys
 import math

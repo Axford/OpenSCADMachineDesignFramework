@@ -33,8 +33,8 @@ def cut():
 
     # for each machine
     for m in jso:
-        if type(m) is DictType and m['type'] == 'machine':
-            print(m['title'])
+        if type(m) is dict and m['type'] == 'machine':
+            print((m['title']))
 
             al = m['cut']
 
@@ -43,7 +43,7 @@ def cut():
                 os.makedirs(config.paths['cutpartsimages'])
 
             for a in al:
-                print("  "+a['title'])
+                print(("  "+a['title']))
                 fn = config.paths['root'] + a['file']
                 if (os.path.isfile(fn)):
 
@@ -81,13 +81,13 @@ def cut():
                         f.close()
 
                         # Views
-                        print("      Step "+str(step['num']))
+                        print(("      Step "+str(step['num'])))
                         for view in step['views']:
                             render_view_using_file(a['title']+'_step'+str(step['num']), config.paths['tempscad'], config.paths['cutpartsimages'], view, hashchanged, h)
 
 
                 else:
-                    print("    Error: scad file not found: "+a['file'])
+                    print(("    Error: scad file not found: "+a['file']))
 
 
     # Save changes to json
